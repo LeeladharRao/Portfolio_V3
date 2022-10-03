@@ -15,10 +15,17 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "gatsby": "^4.24.0",
+    "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-netlify-cms": "^6.24.0",
+    "gatsby-transformer-remark": "^5.24.0",
     "netlify-cms-app": "^2.15.72",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-helmet": "^6.1.0",
+    "scrollreveal": "^4.0.9",
+    "styled-components": "^5.3.6"
   }
 }
