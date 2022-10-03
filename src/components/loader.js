@@ -113,8 +113,8 @@ const Loader = ({ finishLoading }) => {
     <StyledLoader className="loader" isMounted={isMounted}>
       <Helmet bodyAttributes={{ class: `hidden` }} />
 
-      <div class="wrapper">
-        <div class="svg-container">
+      <div className="wrapper">
+        <div className="svg-container">
           <IconLoader />
         </div>
       </div>
