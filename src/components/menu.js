@@ -163,31 +163,7 @@ const StyledSidebar = styled.aside`
     }
   }
 
-  .resume-link {
-    color: var(--green);
-    background-color: transparent;
-    border: 1px solid var(--green);
-    border-radius: var(--border-radius);
-    padding: 1.25rem 1.75rem;
-    font-size: var(--fz-sm);
-    font-family: var(--font-mono);
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: var(--transition);
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: var(--green-tint);
-      outline: none;
-    }
-    &:after {
-      display: none !important;
-    }
-    padding: 18px 50px;
-    margin: 10% auto 0;
-    width: max-content;
-  }
+
 `;
 
 

@@ -139,28 +139,9 @@ const StyledLinks = styled.div`
   } 
 
   .resume-button {
-    color: var(--nav-resume-button-blue);
-    background-color: var();
-    border: 1px solid var(--nav-resume-button-blue);
-    border-radius: var(--border-radius);
+    ${({ theme }) => theme.mixins.button};
     padding: 0.75rem 1rem;
-    font-size: var(--fz-xs);
-    font-family: var(--font-mono);
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: var(--transition);
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: var(--nav-hover-button-green);
-      outline: none;
-    }
-    &:after {
-      display: none !important;
-    }
     margin-left: 2rem;
-    font-size: var(--fz-xs);
   }
 `;
 

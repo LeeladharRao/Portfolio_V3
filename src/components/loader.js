@@ -15,12 +15,14 @@ const StyledLoader = styled.div`
 }
 
 svg {
-  height: 80%;
   width: 80%;
-  transform: scale(2);
+  transform: scale(1.25);
   backface-visibility: hidden;
   @media screen and (min-width: 768px) {
-    transform: scale(3);
+    transform: scale(2);
+  }
+  @media screen and (min-width: 1000px) {
+    transform: scale(2.5);
   }
 }
 
