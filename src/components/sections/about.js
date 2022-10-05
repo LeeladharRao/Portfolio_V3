@@ -19,6 +19,7 @@ const StyledAboutSectionBox = styled.section`
 const StyledAboutSection = styled.section`
   max-width: 900px;
   color: var(--about-text);
+  padding: 0 5% 0 5%;
 
   h2 {
     color: var(--about-text);

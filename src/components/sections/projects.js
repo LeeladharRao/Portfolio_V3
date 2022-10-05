@@ -198,6 +198,7 @@ const Projects = () => {
   const revealArchiveLink = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const revealContainer = useRef(null);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -267,13 +268,8 @@ const Projects = () => {
   };
 
   return (
-    <StyledProjectsSection>
+    <StyledProjectsSection id="projects" ref={revealContainer}>
       <h2 ref={revealTitle}>Some Noteworthy Projects</h2>
-
-      <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
-        view the archive
-      </Link>
-
       <ul className="projects-grid">
         {prefersReducedMotion ? (
           <>
