@@ -47,5 +47,4 @@ L0,152.4l24.4-4.7l83.5,83.6L101.8,211.2z"></path>
     </g>
   </svg>
 );
-
 export default IconLoader;

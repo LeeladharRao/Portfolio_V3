@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { Head, Nav, Loader, Social, Email, Footer } from '@components'
-import { GlobalStyle, theme }  from '@styles';
+import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import { GlobalStyle, theme } from '@styles';
 
 const StyledContent = styled.div`
   display: flex;
@@ -10,8 +10,7 @@ const StyledContent = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children, location }) => {  
-  
+const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
   const [isLoading, setIsLoading] = useState(isHome);
 
@@ -34,7 +33,7 @@ const Layout = ({ children, location }) => {
     }
 
     if (location.hash) {
-      const id = location.hash.substring(1); // location.hash without the '#'
+      const id = location.hash.substring(1);
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
@@ -46,7 +45,6 @@ const Layout = ({ children, location }) => {
 
     handleExternalLinks();
   }, [isLoading]);
-
 
   return (
     <>

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { IconLoader } from '@components/icons';
 
 const StyledLoader = styled.div`
+${({ theme }) => theme.mixins.flexCenter};
 .wrapper {
   height: 100vh;
   display: flex;
@@ -114,11 +115,8 @@ const Loader = ({ finishLoading }) => {
   return (
     <StyledLoader className="loader" isMounted={isMounted}>
       <Helmet bodyAttributes={{ class: `hidden` }} />
-
-      <div className="wrapper">
-        <div className="svg-container">
-          <IconLoader />
-        </div>
+      <div className="logo-wrapper">
+        <IconLoader />
       </div>
     </StyledLoader>
   );

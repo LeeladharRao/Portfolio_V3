@@ -8,22 +8,17 @@ import { usePrefersReducedMotion } from '@hooks';
 const StyledAboutSectionBox = styled.section`
   background-color: var(--about-background-colour);
   border-radius: 25px;
-  margin-top: 10%;
-  padding: 2% 0 10% 0;
+  padding: 0 0;
 
   @media (max-width: 768px) {
     background-color: inherit;
     display: block;
   }
 `;
+
 const StyledAboutSection = styled.section`
   max-width: 900px;
-  color: var(--about-text);
-  padding: 0 5% 0 5%;
-
-  h2 {
-    color: var(--about-text);
-  }
+  margin: 0 0 5% 5%;
 
   .inner {
     display: grid;
@@ -35,7 +30,9 @@ const StyledAboutSection = styled.section`
     }
   }
 `;
+
 const StyledText = styled.div`
+  color: var(--about-text);
   ul.skills-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -44,7 +41,6 @@ const StyledText = styled.div`
     margin: 20px 0 0 0;
     overflow: hidden;
     list-style: none;
-    
 
     li {
       position: relative;
@@ -52,7 +48,6 @@ const StyledText = styled.div`
       padding-left: 20px;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
-      
 
       &:before {
         content: '▹';
@@ -61,7 +56,6 @@ const StyledText = styled.div`
         color: var(--green);
         font-size: var(--fz-sm);
         line-height: 12px;
-        
       }
     }
   }
@@ -126,8 +120,6 @@ const StyledPic = styled.div`
       mix-blend-mode: screen;
     }
     
-     
-    
   }
 `;
 
@@ -146,8 +138,8 @@ const About = () => {
   const skills = ['JavaScript (ES6+)', 'Gatsby.js', 'TypeScript', 'React', 'Flask', 'Php'];
 
   return (
-    <StyledAboutSectionBox id="about" ref={revealContainer}>
-      <StyledAboutSection>
+    <StyledAboutSectionBox id="about">
+      <StyledAboutSection ref={revealContainer}>
         <h2 className="numbered-heading">About Me</h2>
 
         <div className="inner">
@@ -155,23 +147,23 @@ const About = () => {
             <div>
               <p>
                 Hello! My name is Leela and I enjoy creating things that live on the internet. This
-                is my place on the web that I've created to show the world. Along my way, I've picked up enough 
+                is my place on the web that I've created to show the world. Along my way, I've picked up enough
                 related tech to handle frontend, backend, and even a touch of design.
               </p>
 
               <p>
                 There's a whole world out there outside of tech, but coding is my favorite
-                hobby. I am pretty much open-minded towards all things, you can talk to me about anything and everything. 
+                hobby. I am pretty much open-minded towards all things, you can talk to me about anything and everything.
                 I love cooking, playing and watching football and l love motorsports.
               </p>
 
               <p>
-                I like strategy and indie video games. Science, science fiction, animation stuff, Pokemon's, 
+                I like strategy and indie video games. Science, science fiction, animation stuff, Pokemon's,
                 modern engineering technology interests me, and I love binge-watching web content.
               </p>
 
               <p>
-                My current weapon of choice is Python, but I believe in using the best tool for the job. If you enjoy long 
+                My current weapon of choice is Python, but I believe in using the best tool for the job. If you enjoy long
                 lists of keywords, here are a few that I've worked with most recently:</p>
             </div>
 
@@ -182,16 +174,16 @@ const About = () => {
 
           <StyledPic>
             <div className="wrapper">
-                <StaticImage
+              <StaticImage
                 className="img"
                 src="../../images/img-logo1.png"
                 width={500}
                 quality={95}
                 formats={['AUTO', 'WEBP', 'AVIF']}
                 alt="Headshot"
-                />
+              />
             </div>
-            </StyledPic>
+          </StyledPic>
         </div>
       </StyledAboutSection>
     </StyledAboutSectionBox>

@@ -2,25 +2,27 @@ import { css } from 'styled-components';
 
 const variables = css`
   :root {
-    --gray-0: #f8f9fa;
-    --gray-05: #f3f6f9;
-    --gray-1: #f1f3f5;
-    --gray-2: #e9ecef;
-    --gray-3: #dee2e6;
-    --gray-4: #ced4da;
-    --gray-5: #adb5bd;
-    --gray-6: #868e96;
-    --gray-7: #4b5056;
-    --gray-8: #31363b;
-    --gray-9: #212529;
-    --green: #51b681;
+    --gray-0: #f9f9f9;
+    --gray-05: #f6f6f6;
+    --gray-1: #eee;
+    --gray-2: #e6e6e6;
+    --gray-3: #ddd;
+    --gray-4: #bbb;
+    --gray-5: #999;
+    --gray-6: #666;
+    --gray-65: #555;
+    --gray-7: #2c2c2c;
+    --gray-8: #252525;
+    --gray-9: #1f1f1f;
+    --gray-10: #181818;
+    --green: #14ae73;
     --green-1: #95cd7f;
     --green-2: #73b18a;
     --green-3: #4d8994;
     --green-4: #30619d;
     --green-5: #30379d;
     --red: #f34646;
-    --red-1: #efcf4a;
+    --red-1: #fdd94a;
     --red-2: #e0a944;
     --red-3: #d37d36;
     --red-4: #cd583c;
@@ -31,100 +33,119 @@ const variables = css`
     --blue-3: #5b5ed5;
     --blue-4: #623ac6;
     --blue-5: #58119f;
-    --rainbow-1: #da66b7;
-    --rainbow-2: #7549f0;
-    --rainbow-3: #4989c6;
-    --rainbow-4: #72bf8d;
-    --rainbow-5: #f4c950;
+    --rainbow-1: #ff67f7;
+    --rainbow-2: #9b78fa;
+    --rainbow-3: #59abf7;
+    --rainbow-4: #5eddac;
+    --rainbow-5: #f6cd5d;
     --orange: #ff7e22;
     --yellow: #fca62a;
-    --pink: #e855b3;
-    --purple: #623ac6;
+    --pink: #f57ad0;
+    --purple: #673ece;
     --indigo: #5a43f1;
     --indigo-dark: #4509cf;
     --indigo-light: #969bf6;
     --indigo-muted: #f1f2fd;
 
-    --dark-green: #0F4F34;
-    --dark-green-light : #046645;
-    --dark-green-lightest #067A52;
-    --light-green-darkest: $00A064;
-    --light-green-dark: #3FC283;
-    --light-green: #87E9A9;
+    --background-color: var(--gray-10);
 
+    --sidebar-background: var(--gray-5);
+    --sidebar-line: var(--gray-7);
+    --sidebar-icon: var(--gray-7);
+    --sidebar-icon-hover: yellow;
+    --sidebar-email: var(--gray-7);
+    --sidebar-email-hover: yellow;
 
-    //background
-    --background-colour: #36c97b;
+    --nav-background: var(--gray-10);
+    --nav-background-drop: var(--gray-8);
+    --nav-logo: yellow;
+    --nav-text: var(--gray-0);
+    --nav-text-hover: yellow;
+    --nav-button: var(--gray-10);
+    --nav-button-text: yellow;
 
-    // sidebar
-    --sidebar-blue: #043c72;
-    --sidebar-line-white: white;
-    --sidebar-icon-white: white;
-    --sidebar-email-white: white;
-    --sidebar-hover-icon-green: #3FC283;
-    --sidebar-hover-email-green: #3FC283;
+    --hero-text-h1: yellow;
+    --hero-text-h2: var(--gray-0);
+    --hero-text-h3: var(--gray-4);
+    --hero-text: var(--gray-4);
 
-    //footer
-    --footer-text-blue: #043c72;
-    --footer-hover-text-dark-green: #0F4F34;
+    --about-background-colour: #FFF9A6;
+    --about-text: var(--gray-10);
 
-    //header
-    --nav-text-blue: #049882;
-    --nav-resume-button-blue: #043c72;
-    --nav-hover-text-green: #0F4F34;
-    --nav-hover-button-green: #3FC283;
+    --project-heading: var(--gray-0);
+    --project-text: var(--gray-10);
+    --project-archive-link: yellow;
+    --project-link: var(--gray-10);
+    --project-card-background-color: #FFF9A6;
     
-    //hero
-    --h1-text: #043c72;
-    --h2-text: #043c72;
-    --h3-text: #eaf5df;
-    --h4-text: #ecf5e0;
+    --contact-text-h3: yellow;
+    --contact-text: var(--gray-0);
 
-    //aboutme
-    --about-background-colour: #043c72;
-    --about-text: #eaf5df;
+    --scrollbar-track-color: var(--gray-4);
+    --scrollbar-thumb-color: var(--gray-6);
 
-    //projects
-    --project-background-colour: #043c72;
-    --project-text: #eaf5df;
-    --project-link: #64ffda;
-    --project-tech-list: #64ffda;
+    --selection-color: #45b6fe;
+    --selection-text-color: yellow;
 
 
+    --year: var(--rainbow-4);
+    --font-color-heading: white;
+    --font-color-heading3: white;
+    --font-color-base: var(--gray-2);
+    --font-color-muted: var(--gray-5);
+    --font-color-bright: white;
+    --border-color: var(--gray-7);
+    --border-color-hover: var(--gray-6);
+    --button-background-color: var(--gray-8);
+    --post-time-color: var(--rainbow-4);
+    --card-time-color: var(--pink);
+    --project-time-color: var(--star);
+    --link: #9ca0fa;
+    --link-hover-color: #222;
+    --blockquote-background: rgba(120, 120, 240, 0.05);
+    --marker: #e77cc7;
+    --file-background: #161616;
+    --inline-code-background-color: rgba(0, 0, 0, 0.2);
+    --highlight-color: var(--rainbow-4);
+    --navbar: var(--gray-9);
+    --navbar-border: var(--gray-7);
+    --navbar-color: var(--gray-4);
+    --navbar-color-hover: white;
+    --theme-button-background: var(--gray-8);
+    --theme-button-background-hover: var(--gray-7);
+    --theme-button-border: var(--gray-7);
+    --theme-button-border-hover: var(--gray-6);
+    --theme-button-color: var(--gray-0);
+    --theme-button-color-hover: white;
+    --category-link: var(--font-color-muted);
+    --scrollbar-color: var(--gray-65);
+    --scrollbar-track: var(--gray-7);
+    --code-font-color: #b3b9c5;
+    --code-background-color: #131313;
+    --code-border-color: var(--gray-7);
+    --terminal-background-color: #111;
+    --terminal-color: white;
+    --terminal-bar: -webkit-linear-gradient(top, #282828, #222);
+    --terminal-border: var(--border-color);
+    --terminal-accent: var(--gray-6);
+    --string: var(--rainbow-4);
+    --variable: var(--rainbow-2);
+    --property: #b3b9c5;
+    --number: #fca369;
+    --operator: #637187;
+    --punctuation: #c7cdd7;
+    --comment: #777c85;
+    --function: #28e3e6;
+    --keyword: var(--rainbow-2);
+    --attribute: #fed06d;
+    --class: var(--rainbow-1);
+    --tag: var(--rainbow-3);
+    --error: #b0292c;
+    --code-link-hover: var(--link-hover-color);
+    --highlight-code-color: rgb(116, 207, 136, 0.1);
 
+    --footer-text: yellow;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    --font-yellow: #dae6d8;
-
-    --dark-navy: #007bff;
-    --navy: #31363b;
-    --light-navy: #112240;
-    --lightest-navy: #233554;
-    --navy-shadow: rgba(2, 12, 27, 0.7);
-    --dark-slate: #043c72;
-    --slate: #ced4da;
-    --light-slate: #043c72;
-    --lightest-slate: #043c72;
-    --white: #e6f1ff;
-    --green: #64ffda;
-    --green-tint: rgba(100, 255, 218, 0.1);
-    --pink: #f57dff;
-    --blue: #57cbff;
 
     --font-sans: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', -apple-system, system-ui,
       sans-serif;

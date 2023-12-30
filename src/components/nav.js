@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { css } from 'styled-components';
 import { navLinks } from '@config';
 import { loaderDelay } from '@utils';
-import { usePrefersReducedMotion } from '@hooks';
+import { useScrollDirection, usePrefersReducedMotion } from '@hooks';
 import { Menu } from '@components';
-import { IconLogo } from '@components/icons';
+import { IconLogo, IconHex } from '@components/icons';
 
 const StyledHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${({ theme }) => theme.mixins.flexBetween};
+  background-color: var(--nav-background);
   position: fixed;
   top: 0;
   z-index: 11;
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: var(--background-colour);
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
   backdrop-filter: blur(10px);
   transition: var(--transition);
-  font-weight: bold;
 
   @media (max-width: 1080px) {
     padding: 0 40px;
@@ -37,56 +34,76 @@ const StyledHeader = styled.header`
   @media (prefers-reduced-motion: no-preference) {
     ${props =>
     props.scrollDirection === 'up' &&
-    !props.scrolledToTop &&
-    css`
+      !props.scrolledToTop &&
+      css`
         height: var(--nav-scroll-height);
         transform: translateY(0px);
-        background-color: rgba(10, 25, 47, 0.85);
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
+        background-color: var(--nav-background-drop);
+        box-shadow: 0 10px 30px -10px var(--nav-background-drop);
       `};
 
     ${props =>
     props.scrollDirection === 'down' &&
-    !props.scrolledToTop &&
-    css`
+      !props.scrolledToTop &&
+      css`
         height: var(--nav-scroll-height);
         transform: translateY(calc(var(--nav-scroll-height) * -1));
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
+        box-shadow: 0 10px 30px -10px var(--nav-background-drop);
       `};
   }
 `;
 
 const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${({ theme }) => theme.mixins.flexBetween};
   position: relative;
-  width: 60%;
-  color: var(--nav-text-blue);
+  width: 100%;
+  color: var(--nav-background);
   font-family: var(--font-mono);
   counter-reset: item 0;
   z-index: 12;
 
   .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => theme.mixins.flexCenter};
 
     a {
+      color: var(--nav-logo);
       width: 42px;
       height: 42px;
+      position: relative;
+      z-index: 1;
 
-      &:hover,
-      &:focus {
-        svg {
-          fill: transparent;
+      .hex-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        @media (prefers-reduced-motion: no-preference) {
+          transition: var(--transition);
         }
       }
 
-      svg {
-        fill: none;
-        transition: var(--transition);
-        user-select: none;
+      .logo-container {
+        position: relative;
+        z-index: 1;
+        svg {
+          fill: none;
+          user-select: none;
+          @media (prefers-reduced-motion: no-preference) {
+            transition: var(--transition);
+          }
+          polygon {
+            fill: var(--nav-logo);
+          }
+        }
+      }
+
+      &:hover,
+      &:focus {
+        outline: 0;
+        transform: translate(-4px, -4px);
+        .hex-container {
+          transform: translate(4px, 3px);
+        }
       }
     }
   }
@@ -101,53 +118,58 @@ const StyledLinks = styled.div`
   }
 
   ol {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    ${({ theme }) => theme.mixins.flexBetween};
     padding: 0;
     margin: 0;
     list-style: none;
 
+    @media (max-width: 768px) {
+      color: red;
+    }
+    
     li {
       margin: 0 5px;
       position: relative;
       counter-increment: item 1;
-      font-size: var(--fz-lg);
-      padding-left: 2rem;
-      list-style-type:none
-      
+      font-size: var(--fz-xl);
+      color: var(--nav-text);
+
       a {
         padding: 10px;
 
+        
         &:before {
-          content: '0' counter(item) '.';
           margin-right: 5px;
-          color: var(--green);
+          color: var(--nav-text);
           font-size: var(--fz-xxs);
           text-align: right;
+          
+        }
+
+        &:hover, &:focus {
+          color: var(--nav-text-hover);
         }
       }
     }
-
-    a {
-
-      &:hover,
-        &:focus {
-        color: var(--nav-hover-text-green)
-      }
-    }
-  } 
+  }
 
   .resume-button {
-    ${({ theme }) => theme.mixins.button};
-    padding: 0.75rem 1rem;
-    margin-left: 2rem;
+    ${({ theme }) => theme.mixins.smallButton};
+    margin-left: 15px;
+    font-size: var(--fz-xs);
+    background-color: var(--nav-button);
   }
 `;
 
 const Nav = ({ isHome }) => {
   const [isMounted, setIsMounted] = useState(!isHome);
+  const scrollDirection = useScrollDirection('down');
+  const [scrolledToTop, setScrolledToTop] = useState(true);
   const prefersReducedMotion = usePrefersReducedMotion();
+
+  const handleScroll = () => {
+    setScrolledToTop(window.pageYOffset < 50);
+  };
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -158,8 +180,11 @@ const Nav = ({ isHome }) => {
       setIsMounted(true);
     }, 100);
 
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
       clearTimeout(timeout);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -171,11 +196,18 @@ const Nav = ({ isHome }) => {
     <div className="logo" tabIndex="-1">
       {isHome ? (
         <a href="/" aria-label="home">
-          <IconLogo />
+          <div className="hex-container">
+            <IconHex />
+          </div>
         </a>
       ) : (
         <Link to="/" aria-label="home">
-          <IconLogo />
+          <div className="hex-container">
+            <IconHex />
+          </div>
+          <div className="logo-container">
+            <IconLogo />
+          </div>
         </Link>
       )}
     </div>
@@ -188,7 +220,7 @@ const Nav = ({ isHome }) => {
   );
 
   return (
-    <StyledHeader>
+    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop}>
       <StyledNav>
         {prefersReducedMotion ? (
           <>
@@ -199,7 +231,7 @@ const Nav = ({ isHome }) => {
                 {navLinks &&
                   navLinks.map(({ url, name }, i) => (
                     <li key={i}>
-                      <Link to={url}>{name}</Link>
+                      <Link to={url}>{name}</Link>b
                     </li>
                   ))}
               </ol>

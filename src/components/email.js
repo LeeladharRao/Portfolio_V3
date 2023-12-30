@@ -9,7 +9,8 @@ const StyledLinkWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  color: var(--sidebar-email-white);
+  background-color: var(--sidebar-background);
+  border-radius: 25px 25px 0 0;
 
   &:after {
     content: '';
@@ -17,22 +18,24 @@ const StyledLinkWrapper = styled.div`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: var(--sidebar-line-white);
+    background-color: var(--sidebar-line);
   }
 
   a {
     margin: 20px auto;
     padding: 10px;
     font-family: var(--font-mono);
-    font-size: var(--fz-xxs);
+    font-size: var(--fz-xs);
     line-height: var(--fz-lg);
     letter-spacing: 0.1em;
     writing-mode: vertical-rl;
+    font-weight: 600;
+    color: var(--sidebar-email);
     
     &:hover,
     &:focus {
       transform: translateY(-3px);
-      color: var(--sidebar-hover-icon-green);
+      color: var(--sidebar-email-hover);
     }
   }
 `;

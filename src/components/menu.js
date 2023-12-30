@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { navLinks } from '@config';
+import { KEY_CODES } from '@utils';
+import { useOnClickOutside } from '@hooks';
 
 const StyledMenu = styled.div`
   display: none;
@@ -16,9 +18,7 @@ const StyledHamburgerButton = styled.button`
   display: none;
 
   @media (max-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => theme.mixins.flexCenter};
     position: relative;
     z-index: 10;
     margin-right: -15px;
@@ -89,9 +89,7 @@ const StyledSidebar = styled.aside`
   display: none;
 
   @media (max-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${({ theme }) => theme.mixins.flexCenter};
     position: fixed;
     top: 0;
     bottom: 0;
@@ -101,7 +99,7 @@ const StyledSidebar = styled.aside`
     height: 100vh;
     outline: 0;
     background-color: var(--light-navy);
-    box-shadow: -10px 0px 30px -15px var(--navy-shadow);
+    box-shadow: -10px 0px 30px -15px var(--background-color-shadow);
     z-index: 9;
     transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
     visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
@@ -109,10 +107,7 @@ const StyledSidebar = styled.aside`
   }
 
   nav {
-    display: flex;
-    background-color: var(--light-navy);
-    justify-content: space-between;
-    align-items: center;
+    ${({ theme }) => theme.mixins.flexBetween};
     width: 100%;
     flex-direction: column;
     color: var(--lightest-slate);
@@ -146,26 +141,19 @@ const StyledSidebar = styled.aside`
     }
 
     a {
-      display: inline-block;
-      text-decoration: none;
-      text-decoration-skip-ink: auto;
-      color: inherit;
-      position: relative;
-      transition: var(--transition);
-      &:hover,
-      &:active,
-      &:focus {
-        color: var(--green);
-        outline: 0;
-      }
+      ${({ theme }) => theme.mixins.link};
       width: 100%;
       padding: 3px 20px 20px;
     }
   }
 
-
+  .resume-link {
+    ${({ theme }) => theme.mixins.bigButton};
+    padding: 18px 50px;
+    margin: 10% auto 0;
+    width: max-content;
+  }
 `;
-
 
 const Menu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -175,6 +163,56 @@ const Menu = () => {
   const buttonRef = useRef(null);
   const navRef = useRef(null);
 
+  let menuFocusables;
+  let firstFocusableEl;
+  let lastFocusableEl;
+
+  const setFocusables = () => {
+    menuFocusables = [buttonRef.current, ...Array.from(navRef.current.querySelectorAll('a'))];
+    firstFocusableEl = menuFocusables[0];
+    lastFocusableEl = menuFocusables[menuFocusables.length - 1];
+  };
+
+  const handleBackwardTab = e => {
+    if (document.activeElement === firstFocusableEl) {
+      e.preventDefault();
+      lastFocusableEl.focus();
+    }
+  };
+
+  const handleForwardTab = e => {
+    if (document.activeElement === lastFocusableEl) {
+      e.preventDefault();
+      firstFocusableEl.focus();
+    }
+  };
+
+  const onKeyDown = e => {
+    switch (e.key) {
+      case KEY_CODES.ESCAPE:
+      case KEY_CODES.ESCAPE_IE11: {
+        setMenuOpen(false);
+        break;
+      }
+
+      case KEY_CODES.TAB: {
+        if (menuFocusables && menuFocusables.length === 1) {
+          e.preventDefault();
+          break;
+        }
+        if (e.shiftKey) {
+          handleBackwardTab(e);
+        } else {
+          handleForwardTab(e);
+        }
+        break;
+      }
+
+      default: {
+        break;
+      }
+    }
+  };
 
   const onResize = e => {
     if (e.currentTarget.innerWidth > 768) {
@@ -183,14 +221,19 @@ const Menu = () => {
   };
 
   useEffect(() => {
+    document.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', onResize);
 
+    setFocusables();
+
     return () => {
+      document.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
     };
   }, []);
 
   const wrapperRef = useRef();
+  useOnClickOutside(wrapperRef, () => setMenuOpen(false));
 
   return (
     <StyledMenu>

@@ -11,21 +11,24 @@ const StyledProjectsSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
-  padding: 2% 0 10% 0;
-
+  
   h2 {
     font-size: clamp(24px, 5vw, var(--fz-heading));
+    color: var(--project-heading);
   }
-
+  
   .archive-link {
     font-family: var(--font-mono);
     font-size: var(--fz-sm);
+    color: var(--project-archive-link);
+    &:hover {
+      color: var(--project-archive-link);
+    }
     &:after {
       bottom: 0.1em;
     }
   }
-
+  
   .projects-grid {
     ${({ theme }) => theme.mixins.resetList};
     display: grid;
@@ -33,19 +36,19 @@ const StyledProjectsSection = styled.section`
     grid-gap: 15px;
     position: relative;
     margin-top: 50px;
-
+    
     @media (max-width: 1080px) {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
   }
-
+  
   .more-button {
     ${({ theme }) => theme.mixins.button};
     margin: 80px auto 0;
   }
-`;
-
-const StyledProject = styled.li`
+  `;
+  
+  const StyledProject = styled.li`
   position: relative;
   cursor: default;
   transition: var(--transition);
@@ -73,13 +76,14 @@ const StyledProject = styled.li`
     height: 100%;
     padding: 2rem 1.75rem;
     border-radius: var(--border-radius);
-    background-color: var(--about-background-colour);
+    background-color: var(--project-card-background-color);
     transition: var(--transition);
+    overflow: auto;
   }
 
   .project-top {
     ${({ theme }) => theme.mixins.flexBetween};
-    margin-bottom: 10px;
+    margin-bottom: 35px;
 
     .folder {
       color: var(--green);
@@ -93,7 +97,7 @@ const StyledProject = styled.li`
       display: flex;
       align-items: center;
       margin-right: -10px;
-      color: var(--project-link);
+      color: var(--light-slate);
 
       a {
         ${({ theme }) => theme.mixins.flexCenter};
@@ -158,7 +162,6 @@ const StyledProject = styled.li`
       font-family: var(--font-mono);
       font-size: var(--fz-xxs);
       line-height: 1.75;
-      color: var(--project-tech-list);
 
       &:not(:last-of-type) {
         margin-right: 15px;
@@ -171,11 +174,8 @@ const Projects = () => {
   const data = useStaticQuery(graphql`
     query {
       projects: allMarkdownRemark(
-        filter: {
-          fileAbsolutePath: { regex: "/projects/" }
-          frontmatter: { showInProjects: { ne: false } }
-        }
-        sort: { fields: [frontmatter___date], order: DESC }
+        filter: {fileAbsolutePath: {regex: "/projects/"}, frontmatter: {showInProjects: {ne: false}}}
+        sort: {frontmatter: {date: DESC}}
       ) {
         edges {
           node {
@@ -198,7 +198,6 @@ const Projects = () => {
   const revealArchiveLink = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
-  const revealContainer = useRef(null);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -217,14 +216,14 @@ const Projects = () => {
 
   const projectInner = node => {
     const { frontmatter, html } = node;
-    const { github, external, title, tech, date} = frontmatter;
+    const { github, external, title, tech, date } = frontmatter;
 
     return (
       <div className="project-inner">
         <header>
           <div className="project-top">
             <div className="project-description">
-              {date.split('-')[0]}
+              <div>{date.split('-')[0]}</div>
             </div>
             <div className="project-links">
               {github && (
@@ -268,8 +267,13 @@ const Projects = () => {
   };
 
   return (
-    <StyledProjectsSection id="projects" ref={revealContainer}>
+    <StyledProjectsSection id="projects">
       <h2 ref={revealTitle}>Some Noteworthy Projects</h2>
+
+      <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
+        view the archive
+      </Link>
+
       <ul className="projects-grid">
         {prefersReducedMotion ? (
           <>
