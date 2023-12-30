@@ -12,6 +12,7 @@ const StyledSocialList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
+  background-color: var(--sidebar-background);
 
   &:before {
     content: '';
@@ -19,7 +20,7 @@ const StyledSocialList = styled.ul`
     width: 1px;
     height: 70vh;
     margin: 0 auto;
-    background-color: var(--sidebar-line-white);
+    background-color: var(--sidebar-line);
   }
 
   &:after {
@@ -28,7 +29,7 @@ const StyledSocialList = styled.ul`
     width: 40px;
     height: 90px;
     margin: 0 auto;
-    background-color: var(--sidebar-line-white);
+    background-color: var(--sidebar-line);
   }
 
   &:after {
@@ -37,7 +38,6 @@ const StyledSocialList = styled.ul`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: var(--sidebar-line-white);
   }
 
   li {
@@ -51,18 +51,17 @@ const StyledSocialList = styled.ul`
       &:hover,
       &:focus {
         transform: translateY(-3px);
-        color: red;
       }
 
       svg {
         width: 20px;
         height: 20px;
-        color: var(--sidebar-icon-white);
+        color: var(--sidebar-icon);
 
         &:hover,
           &:focus {
           transform: translateY(-3px);
-          color: var(--sidebar-hover-icon-green);
+          color: var(--sidebar-icon-hover);
         }
       }
     }

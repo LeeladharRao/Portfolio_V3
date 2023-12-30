@@ -21,8 +21,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: var(--slate);
-    color: var(--lightest-slate);
+    background-color: var(--selection-color);
+    color: var(--selection-text-color);
   }
 
   /* Provide basic, default focus styles.*/
@@ -53,17 +53,17 @@ const GlobalStyle = createGlobalStyle`
   /* Scrollbar Styles */
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--dark-slate) var(--navy);
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
   }
-  body::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 12px;
   }
-  body::-webkit-scrollbar-track {
-    background: var(--background-colour);
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-thumb-color);
   }
-  body::-webkit-scrollbar-thumb {
-    background-color: var(--dark-slate);
-    border: 3px solid var(--navy);
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-track-color);
+    border: 3px solid var(--scrollbar-track-color);
     border-radius: 10px;
   }
 
@@ -74,7 +74,8 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: var(--background-colour);
+    background-color: var(--background-color);
+    color: var(--slate);
     font-family: var(--font-sans);
     font-size: var(--fz-xl);
     line-height: 1.3;
@@ -144,7 +145,7 @@ const GlobalStyle = createGlobalStyle`
 
   section {
     margin: 0 auto;
-    // padding: 100px 0;
+    padding: 100px 0;
     max-width: 1000px;
 
     @media (max-width: 768px) {
@@ -163,8 +164,8 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     margin: 0 0 10px 0;
-    font-weight: 700;
-    color: var(--dark-slate);
+    font-weight: 600;
+    color: var(--lightest-slate);
     line-height: 1.1;
   }
 
@@ -182,10 +183,26 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     position: relative;
-    margin: 50px 0 40px;
+    margin: 10px 0 40px;
     width: 100%;
     font-size: clamp(26px, 5vw, var(--fz-heading));
     white-space: nowrap;
+
+    &:before {
+      position: relative;
+      bottom: 4px;
+      counter-increment: section;
+      margin-right: 10px;
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: clamp(var(--fz-md), 3vw, var(--fz-xl));
+      font-weight: 400;
+
+      @media (max-width: 480px) {
+        margin-bottom: -3px;
+        margin-right: 5px;
+      }
+    }
 
     &:after {
       content: '';
@@ -240,6 +257,11 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     position: relative;
     transition: var(--transition);
+
+    &:hover,
+    &:focus {
+      color: var(--project-link);
+    }
 
     &.inline-link {
       ${({ theme }) => theme.mixins.inlineLink};
@@ -347,23 +369,25 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     z-index: -99;
 
-    &:focus,
-    &:active {
+    &:hover,
+    &:focus {
       background-color: var(--green);
-      color: var(--navy);
+      color: var(--background-color);
       top: 0;
       left: 0;
       width: auto;
       height: auto;
       overflow: auto;
       z-index: 99;
+      box-shadow: none;
+      transform: none;
     }
   }
 
   #logo {
     color: var(--green);
   }
-  
+
   .st0 {
     fill: #fff;
   }
@@ -383,9 +407,9 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
-  @media print {
-    .pagebreak { page-break-before: always; } /* page-break-after works, as well */
-}
+  #about {
+    scroll-margin-top: 100px;
+  }
 
   .subtitle {
     color: var(--green);

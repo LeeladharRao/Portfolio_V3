@@ -3,24 +3,24 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
-// import { email } from '@config';
 
 const StyledHeroSection = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.mixins.flexCenter};
   flex-direction: column;
   align-items: flex-start;
-  min-height: 90vh;
+  min-height: 100vh;
+  height: 100vh;
   padding: 0;
+  color: var(--hero-text);
 
-  @media (max-width: 480px) and (min-height: 700px) {
-    padding-bottom: 10vh;
+  @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
+    height: auto;
+    padding-top: var(--nav-height);
   }
 
   h1 {
     margin: 0 0 30px 4px;
-    color: var(--h1-text);
+    color: var(--hero-text-h1);
     font-family: var(--font-mono);
     font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
     font-weight: 400;
@@ -31,43 +31,23 @@ const StyledHeroSection = styled.section`
   }
 
   h2 {
-    color: var(--h2-text);
+    color: var(--hero-text-h2);
   }
 
   h3 {
-    margin-top: 10px;
-    color: var(--h3-text);
+    margin-top: 5px;
     line-height: 0.9;
+    color: var(--hero-text-h3);
   }
 
   p {
     margin: 20px 0 0;
     max-width: 540px;
-    color: var(--h4-text);
   }
 
   .email-link {
+    ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
-    color: var(--green);
-    background-color: transparent;
-    border: 1px solid var(--green);
-    border-radius: var(--border-radius);
-    padding: 1.25rem 1.75rem;
-    font-size: var(--fz-sm);
-    font-family: var(--font-mono);
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: var(--transition);
-    &:hover,
-    &:focus,
-    &:active {
-      outline: none;
-    }
-    &:after {
-      display: none !important;
-    }
-    
   }
 `;
 
@@ -86,7 +66,6 @@ const Hero = () => {
 
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Leeladhar Rao.</h2>;
-  const three = <h3 className="big-heading">I build things for the web.</h3>;
   const four = (
     <>
       <p>
@@ -100,7 +79,7 @@ const Hero = () => {
     </>
   );
 
-  const items = [one, two, three, four];
+  const items = [one, two, four];
 
   return (
     <StyledHeroSection>

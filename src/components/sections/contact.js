@@ -5,7 +5,6 @@ import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledContactSection = styled.section`
-  padding: 100px 0;
   max-width: 600px;
   margin: 0 auto 100px;
   text-align: center;
@@ -14,13 +13,17 @@ const StyledContactSection = styled.section`
     margin: 0 auto 50px;
   }
 
+  h2, h3, p {
+    color: var(--contact-text);
+  }
+
   .overline {
     display: block;
     margin-bottom: 20px;
-    color: var(--green);
     font-family: var(--font-mono);
     font-size: var(--fz-md);
     font-weight: 400;
+    color: var(--contact-text-h3);
 
     &:before {
       bottom: 0;
@@ -37,7 +40,7 @@ const StyledContactSection = styled.section`
   }
 
   .email-link {
-    ${({ theme }) => theme.mixins.button};
+    ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
   }
 `;
@@ -56,12 +59,12 @@ const Contact = () => {
 
   return (
     <StyledContactSection id="contact" ref={revealContainer}>
-      <h2 className="numbered-heading overline">Let's talk</h2>
+      <h2 className="numbered-heading overline">What’s Next?</h2>
 
       <h2 className="title">Get In Touch</h2>
 
       <p>
-        Although I’m not currently looking for new opportunities, my inbox is always open and 
+        Although I’m not currently looking for any new opportunities, my inbox is always open.
         I’ll try my best to get back to you!
       </p>
 

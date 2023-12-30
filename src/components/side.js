@@ -12,9 +12,7 @@ const StyledSideElement = styled.div`
   left: ${props => (props.orientation === 'left' ? '40px' : 'auto')};
   right: ${props => (props.orientation === 'left' ? 'auto' : '40px')};
   z-index: 10;
-  background-color: var(--sidebar-blue);
-  border-top-right-radius: ${props => (props.orientation === 'right' ? '20px' : '0')};
-  border-top-left-radius: ${props => (props.orientation === 'right' ? '20px' : '0')};
+  color: var(--light-slate);
 
   @media (max-width: 1080px) {
     left: ${props => (props.orientation === 'left' ? '20px' : 'auto')};

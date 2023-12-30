@@ -4,10 +4,9 @@ import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 import { useStaticQuery, graphql } from 'gatsby';
 
-// https://www.gatsbyjs.com/docs/add-seo-component/
-
-const Head = ({ title, description, image }) => {
-  const { pathname } = useLocation();
+const Head = ({ title }) => {
+  // const Head = ({ title, description, image }) => {
+  // const { pathname } = useLocation();
 
   const { site } = useStaticQuery(
     graphql`
@@ -16,9 +15,7 @@ const Head = ({ title, description, image }) => {
           siteMetadata {
             defaultTitle: title
             defaultDescription: description
-            siteUrl
             defaultImage: image
-            twitterUsername
           }
         }
       }
@@ -27,41 +24,18 @@ const Head = ({ title, description, image }) => {
 
   const {
     defaultTitle,
-    defaultDescription,
-    siteUrl,
-    defaultImage,
-    twitterUsername,
   } = site.siteMetadata;
 
-  const seo = {
-    title: title || defaultTitle,
-    description: description || defaultDescription,
-    image: `${siteUrl}${image || defaultImage}`,
-    url: `${siteUrl}${pathname}`,
-  };
-
   return (
-    <Helmet title={title} defaultTitle={seo.title} titleTemplate={`%s | ${defaultTitle}`}>
-      <html lang="en" />
-
-      <meta name="description" content={seo.description} />
-      <meta name="image" content={seo.image} />
-
-      <meta property="og:title" content={seo.title} />
-      <meta property="og:description" content={seo.description} />
-      <meta property="og:image" content={seo.image} />
-      <meta property="og:url" content={seo.url} />
-      <meta property="og:type" content="website" />
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={twitterUsername} />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:description" content={seo.description} />
-      <meta name="twitter:image" content={seo.image} />
-
-    </Helmet>
+    <>
+      <Helmet title={defaultTitle} defaultTitle="Default">
+        <html lang="en" />
+      </Helmet>
+    </>
   );
 };
+
+export default Head;
 
 Head.propTypes = {
   title: PropTypes.string,
@@ -74,6 +48,3 @@ Head.defaultProps = {
   description: null,
   image: null,
 };
-
-export default Head;
-
