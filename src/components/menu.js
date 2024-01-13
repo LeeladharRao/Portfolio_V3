@@ -223,6 +223,7 @@ const Menu = () => {
   useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', onResize);
+    setFocusables();
 
     setFocusables();
 

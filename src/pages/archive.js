@@ -33,6 +33,14 @@ const StyledTableContainer = styled.div`
       }
     }
 
+    th {
+      color: var(--archive-text-table-head);
+    }
+
+    td {
+      color: yellow;
+    }
+
     th,
     td {
       padding: 10px;
@@ -74,6 +82,7 @@ const StyledTableContainer = styled.div`
 
     td {
       &.year {
+        color: var(--archive-text-year);
         padding-right: 20px;
 
         @media (max-width: 768px) {
@@ -85,15 +94,10 @@ const StyledTableContainer = styled.div`
       &.title {
         padding-top: 15px;
         padding-right: 20px;
-        color: var(--lightest-slate);
+        color: var(--archive-text-title);
         font-size: var(--fz-xl);
         font-weight: 600;
         line-height: 1.25;
-      }
-
-      &.company {
-        font-size: var(--fz-lg);
-        white-space: nowrap;
       }
 
       &.tech {
@@ -144,7 +148,7 @@ const ArchivePage = ({ location, data }) => {
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealTable.current, srConfig(200, 0));
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <Layout location={location}>
@@ -153,7 +157,7 @@ const ArchivePage = ({ location, data }) => {
       <main>
         <header ref={revealTitle}>
           <h1 className="big-heading">Archive</h1>
-          <p className="subtitle">A big list of things I’ve worked on</p>
+          <p className="subtitle">A list of things I’ve worked on ...</p>
         </header>
 
         <StyledTableContainer ref={revealTable}>
@@ -162,7 +166,6 @@ const ArchivePage = ({ location, data }) => {
               <tr>
                 <th>Year</th>
                 <th>Title</th>
-                <th className="hide-on-mobile">Made at</th>
                 <th className="hide-on-mobile">Built with</th>
                 <th>Link</th>
               </tr>
@@ -174,21 +177,14 @@ const ArchivePage = ({ location, data }) => {
                     date,
                     github,
                     external,
-                    ios,
-                    android,
                     title,
                     tech,
-                    company,
                   } = node.frontmatter;
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
                       <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
 
                       <td className="title">{title}</td>
-
-                      <td className="company hide-on-mobile">
-                        {company ? <span>{company}</span> : <span>—</span>}
-                      </td>
 
                       <td className="tech hide-on-mobile">
                         {tech?.length > 0 &&
@@ -203,24 +199,14 @@ const ArchivePage = ({ location, data }) => {
 
                       <td className="links">
                         <div>
-                          {external && (
-                            <a href={external} aria-label="External Link">
-                              <Icon name="External" />
-                            </a>
-                          )}
                           {github && (
                             <a href={github} aria-label="GitHub Link">
                               <Icon name="GitHub" />
                             </a>
                           )}
-                          {ios && (
-                            <a href={ios} aria-label="Apple App Store Link">
-                              <Icon name="AppStore" />
-                            </a>
-                          )}
-                          {android && (
-                            <a href={android} aria-label="Google Play Store Link">
-                              <Icon name="PlayStore" />
+                          {external && (
+                            <a href={external} aria-label="External Link">
+                              <Icon name="External" />
                             </a>
                           )}
                         </div>
@@ -235,6 +221,7 @@ const ArchivePage = ({ location, data }) => {
     </Layout>
   );
 };
+
 ArchivePage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
@@ -256,7 +243,6 @@ export const pageQuery = graphql`
             tech
             github
             external
-            company
           }
           html
         }

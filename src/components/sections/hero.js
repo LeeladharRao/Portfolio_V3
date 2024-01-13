@@ -30,10 +30,6 @@ const StyledHeroSection = styled.section`
     }
   }
 
-  h2 {
-    color: var(--hero-text-h2);
-  }
-
   h3 {
     margin-top: 5px;
     line-height: 0.9;
@@ -62,7 +58,7 @@ const Hero = () => {
 
     const timeout = setTimeout(() => setIsMounted(true), navDelay);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [prefersReducedMotion]);
 
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Leeladhar Rao.</h2>;

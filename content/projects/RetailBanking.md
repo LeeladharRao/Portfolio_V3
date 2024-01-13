@@ -1,7 +1,7 @@
 ---
 date: '2021-04-01'
 title: 'Retail Banking'
-github: 'https://github.com/LeeladharRao/RetailBanking'
+github: 'https://github.com/LeeladharRao/Retail_Banking'
 external: ''
 tech:
   - Flask

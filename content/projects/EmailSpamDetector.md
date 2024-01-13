@@ -1,7 +1,7 @@
 ---
 date: '2019-07-15'
 title: 'Email Spam Detector'
-github: 'https://github.com/LeeladharRao/Email-Spam-Detector'
+github: 'https://github.com/LeeladharRao/Email_Spam_Detector'
 external: ''
 tech:
   - Python
