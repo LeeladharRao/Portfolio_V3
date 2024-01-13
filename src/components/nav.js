@@ -66,7 +66,6 @@ const StyledNav = styled.nav`
     ${({ theme }) => theme.mixins.flexCenter};
 
     a {
-      color: var(--nav-logo);
       width: 42px;
       height: 42px;
       position: relative;
@@ -90,9 +89,6 @@ const StyledNav = styled.nav`
           user-select: none;
           @media (prefers-reduced-motion: no-preference) {
             transition: var(--transition);
-          }
-          polygon {
-            fill: var(--nav-logo);
           }
         }
       }

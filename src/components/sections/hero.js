@@ -30,10 +30,6 @@ const StyledHeroSection = styled.section`
     }
   }
 
-  h2 {
-    color: var(--hero-text-h2);
-  }
-
   h3 {
     margin-top: 5px;
     line-height: 0.9;

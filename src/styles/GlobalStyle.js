@@ -170,6 +170,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .big-heading {
+    color: var(--hero-text-h2);
     margin: 0;
     font-size: clamp(40px, 8vw, 80px);
   }
@@ -384,9 +385,6 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  #logo {
-    color: var(--green);
-  }
 
   .st0 {
     fill: #fff;
@@ -412,7 +410,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .subtitle {
-    color: var(--green);
+    color: var(--archive-text-subtitle);
     margin: 0 0 20px 0;
     font-size: var(--fz-md);
     font-family: var(--font-mono);
