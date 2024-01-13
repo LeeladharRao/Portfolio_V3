@@ -40,7 +40,7 @@ const StyledContactSection = styled.section`
   }
 
   .email-link {
-    ${({ theme }) => theme.mixins.bigButton};
+    ${({ theme }) => theme.mixins.button};
     margin-top: 50px;
   }
 `;
