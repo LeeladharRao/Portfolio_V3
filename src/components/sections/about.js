@@ -133,7 +133,7 @@ const About = () => {
     }
 
     sr.reveal(revealContainer.current, srConfig());
-  }, []);
+  }, [prefersReducedMotion]);
 
   const skills = ['JavaScript (ES6+)', 'Gatsby.js', 'TypeScript', 'React', 'Flask', 'Php'];
 
