@@ -1,10 +1,11 @@
 ---
 date: '2018-10-03'
 title: 'Compound Eye Object Tracking Robot'
-github: 'https://github.com/LeeladharRao/Object-Follower'
+github: 'https://github.com/LeeladharRao/Object_Follower'
 external: ''
 tech:
   - C++
+  - Ardiuno IDE
 company: ''
 showInProjects: true
 ---
