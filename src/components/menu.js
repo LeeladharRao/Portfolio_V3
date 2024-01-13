@@ -225,6 +225,8 @@ const Menu = () => {
     window.addEventListener('resize', onResize);
     setFocusables();
 
+    setFocusables();
+
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
