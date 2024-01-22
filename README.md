@@ -5,8 +5,9 @@
 Third iteration of  my `personal website` running on Gatsby, React, and hosted on Netlify.
 
 Previous iterations:
-  <a href="https://github.com/bchiang7/v1" target="_blank">v1</a>,
-  <a href="https://github.com/bchiang7/v2" target="_blank">v2</a>,
+  <a href="https://github.com/LeeladharRao/Portfolio_V1" target="_blank">v1</a>,
+  <a href="https://github.com/LeeladharRao/Portfolio_V2" target="_blank">v2</a>,
+
 
 ![image](https://github.com/LeeladharRao/Portfolio_V3/assets/52621705/e0d8f82d-2116-45d1-ba4b-d8542b412f36)
 
@@ -51,6 +52,7 @@ Let me know what you think!
 - AnimeJs Documentation - [Docs](https://animejs.com/documentation/)
 - Netlify Documentation - [Docs](https://docs.netlify.com/get-started/)
 - Github Actions Documentation - [Docs](https://docs.github.com/en/actions)
+
 
 
 **Free Software, Hell Yeah!**
