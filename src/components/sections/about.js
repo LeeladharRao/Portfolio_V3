@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -18,7 +19,8 @@ const StyledAboutSectionBox = styled.section`
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
-  margin: 0 0 5% 5%;
+  margin: 0 5% 0 5%;
+  padding: 6% 0 5% 0;
 
   .inner {
     display: grid;
@@ -60,6 +62,7 @@ const StyledText = styled.div`
     }
   }
 `;
+
 const StyledPic = styled.div`
   position: relative;
   max-width: 300px;
@@ -120,6 +123,21 @@ const StyledPic = styled.div`
       mix-blend-mode: screen;
     }
     
+  }
+
+  .moreabout-link {
+    font-family: var(--font-mono);
+    font-size: var(--fz-md);
+    color: var(--about-moreabout-link);
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    &:hover {
+      color: var(--about-moreabout-link);
+    }
+    &:after {
+      bottom: 0.1em;
+    }
   }
 `;
 
@@ -183,8 +201,16 @@ const About = () => {
                 alt="Headshot"
               />
             </div>
+
+            <br></br>
+            <Link className="inline-link moreabout-link" to="/moreaboutme">
+              more about me
+            </Link>
+
           </StyledPic>
+
         </div>
+
       </StyledAboutSection>
     </StyledAboutSectionBox>
   );

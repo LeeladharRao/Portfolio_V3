@@ -35,6 +35,7 @@ const variables = css`
 
     --about-background-colour: #FFF9A6;
     --about-text: var(--gray-10);
+    --about-moreabout-link: var(--gray-10);
 
     --project-heading: var(--gray-0);
     --project-text: var(--gray-10);
