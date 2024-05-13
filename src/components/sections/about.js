@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -18,7 +19,12 @@ const StyledAboutSectionBox = styled.section`
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
-  margin: 0 0 5% 5%;
+  margin: 0 5% 0 5%;
+  padding: 6% 0 5% 0;
+
+  @media (max-width: 768px) {
+    color: var(--about-text-h2);
+  }
 
   .inner {
     display: grid;
@@ -33,6 +39,11 @@ const StyledAboutSection = styled.section`
 
 const StyledText = styled.div`
   color: var(--about-text);
+
+  @media (max-width: 768px) {
+    color: var(--about-text-h3);
+  }
+
   ul.skills-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -53,13 +64,13 @@ const StyledText = styled.div`
         content: '▹';
         position: absolute;
         left: 0;
-        color: var(--green);
         font-size: var(--fz-sm);
         line-height: 12px;
       }
     }
   }
 `;
+
 const StyledPic = styled.div`
   position: relative;
   max-width: 300px;
@@ -74,8 +85,6 @@ const StyledPic = styled.div`
     position: relative;
     width: 100%;
     border-radius: 50%;
-    background-color: var(--green);
-    color: var(--green);
 
     &:hover,
     &:focus {
@@ -120,6 +129,21 @@ const StyledPic = styled.div`
       mix-blend-mode: screen;
     }
     
+  }
+
+  .moreabout-link {
+    font-family: var(--font-mono);
+    font-size: var(--fz-md);
+    color: var(--about-moreabout-link);
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    &:hover {
+      color: var(--about-moreabout-link);
+    }
+    &:after {
+      bottom: 0.1em;
+    }
   }
 `;
 
@@ -183,8 +207,16 @@ const About = () => {
                 alt="Headshot"
               />
             </div>
+
+            <br></br>
+            <Link className="inline-link moreabout-link" to="/blog/more-about-me">
+              more about me
+            </Link>
+
           </StyledPic>
+
         </div>
+
       </StyledAboutSection>
     </StyledAboutSectionBox>
   );
