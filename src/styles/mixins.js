@@ -1,9 +1,9 @@
 import { css } from 'styled-components';
 
 const button = css`
-  color: var(--green);
+  color: var(--yellow);
   background-color: transparent;
-  border: 1px solid var(--green);
+  border: 1px solid var(--yellow);
   border-radius: var(--border-radius);
   font-size: var(--fz-xs);
   font-family: var(--font-mono);
@@ -15,7 +15,7 @@ const button = css`
   &:hover,
   &:focus-visible {
     outline: none;
-    box-shadow: 4px 4px 0 0 var(--green);
+    box-shadow: 4px 4px 0 0 var(--yellow);
     transform: translate(-5px, -5px);
   }
   &:after {
@@ -54,18 +54,18 @@ const mixins = {
   inlineLink: css`
     display: inline-block;
     position: relative;
-    color: var(--yellow);
+    color: yellow;
     transition: var(--transition);
 
     &:hover,
     &:focus-visible {
-      color: var(--yellow);
+      color: yellow;
       outline: 0;
       &:after {
         width: 100%;
       }
       & > * {
-        color: var(--yellow) !important;
+        color: yellow !important;
         transition: var(--transition);
       }
     }
@@ -76,7 +76,7 @@ const mixins = {
       height: 1px;
       position: relative;
       bottom: 0.37em;
-      background-color: var(--yellow);
+      background-color: yellow;
       opacity: 0.5;
       @media (prefers-reduced-motion: no-preference) {
         transition: var(--transition);

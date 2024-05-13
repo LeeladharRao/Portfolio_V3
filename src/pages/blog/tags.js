@@ -8,21 +8,25 @@ import { Layout } from '@components';
 
 const StyledTagsContainer = styled.main`
   max-width: 1000px;
-
+  
   h1 {
     margin-bottom: 50px;
+    color: var(--tags-text-titles);
   }
+  .arrow {
+    color: var(--arrow-yellow);
+  }
+
   ul {
-    color: var(--light-slate);
+    color: var(--tags-text);
 
     li {
       font-size: var(--fz-xxl);
 
       a {
-        color: var(--light-slate);
-
+        color: var(--tags-text-date);
+        
         .count {
-          color: var(--slate);
           font-family: var(--font-mono);
           font-size: var(--fz-md);
         }
@@ -43,7 +47,7 @@ const TagsPage = ({
     <StyledTagsContainer>
       <span className="breadcrumb">
         <span className="arrow">&larr;</span>
-        <Link to="/blog">All memories</Link>
+        <Link to="/blog">All Posts</Link>
       </span>
 
       <h1>Tags</h1>

@@ -12,6 +12,7 @@ const StyledPostContainer = styled.main`
 
 const StyledPostHeader = styled.header`
   margin-bottom: 50px;
+  color: var(--post-text-titles);
   .tag {
     margin-right: 10px;
   }
@@ -19,12 +20,14 @@ const StyledPostHeader = styled.header`
 
 const StyledPostContent = styled.div`
   margin-bottom: 100px;
+  color: var(--post-text);
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
+    color: var(--post-text-titles);
     margin: 2em 0 1em;
   }
 
@@ -61,22 +64,21 @@ const PostTemplate = ({ data, location }) => {
       <Helmet title={title} />
 
       <StyledPostContainer>
-        <span className="breadcrumb">
-          <span className="arrow">&larr;</span>
-          <Link to="/blog">All memories</Link>
-        </span>
-
         <StyledPostHeader>
-          <h1 className="medium-heading">{title}</h1>
+          <h2 className="medium-heading">{title}</h2>
           <p className="subtitle">
-            <time>
-              {new Date(date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-            <span>&nbsp;&mdash;&nbsp;</span>
+            {date ? (
+              <>
+                <time>
+                  {new Date(date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+                <span>&nbsp;&mdash;&nbsp;</span>
+              </>
+            ) : (null)}
             {tags &&
               tags.length > 0 &&
               tags.map((tag, i) => (
@@ -88,8 +90,9 @@ const PostTemplate = ({ data, location }) => {
         </StyledPostHeader>
 
         <StyledPostContent dangerouslySetInnerHTML={{ __html: html }} />
+        
       </StyledPostContainer>
-    </Layout>
+    </Layout >
   );
 };
 

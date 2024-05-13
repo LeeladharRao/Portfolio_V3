@@ -22,6 +22,10 @@ const StyledAboutSection = styled.section`
   margin: 0 5% 0 5%;
   padding: 6% 0 5% 0;
 
+  @media (max-width: 768px) {
+    color: var(--about-text-h2);
+  }
+
   .inner {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -35,6 +39,11 @@ const StyledAboutSection = styled.section`
 
 const StyledText = styled.div`
   color: var(--about-text);
+
+  @media (max-width: 768px) {
+    color: var(--about-text-h3);
+  }
+
   ul.skills-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -55,7 +64,6 @@ const StyledText = styled.div`
         content: '▹';
         position: absolute;
         left: 0;
-        color: var(--green);
         font-size: var(--fz-sm);
         line-height: 12px;
       }
@@ -77,8 +85,6 @@ const StyledPic = styled.div`
     position: relative;
     width: 100%;
     border-radius: 50%;
-    background-color: var(--green);
-    color: var(--green);
 
     &:hover,
     &:focus {
@@ -203,7 +209,7 @@ const About = () => {
             </div>
 
             <br></br>
-            <Link className="inline-link moreabout-link" to="/moreaboutme">
+            <Link className="inline-link moreabout-link" to="/blog/more-about-me">
               more about me
             </Link>
 

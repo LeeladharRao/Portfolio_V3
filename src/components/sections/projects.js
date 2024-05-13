@@ -86,7 +86,6 @@ const StyledProjectsSection = styled.section`
     margin-bottom: 35px;
 
     .folder {
-      color: var(--green);
       svg {
         width: 40px;
         height: 40px;

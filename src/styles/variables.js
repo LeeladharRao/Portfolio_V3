@@ -10,7 +10,8 @@ const variables = css`
     --gray-7: #2c2c2c;
     --gray-8: #252525;
     --gray-10: #181818;
-    --yellow: #fca62a;
+    --yellow: #FFF9A6;
+    --lightest-navy: #233554;
 
     --background-color: var(--gray-10);
 
@@ -28,6 +29,9 @@ const variables = css`
     --nav-button: var(--gray-10);
     --nav-button-text: yellow;
 
+    --menu-button: yellow;
+    --menu-text: var(--yellow);
+
     --hero-text-h1: yellow;
     --hero-text-h2: var(--gray-0);
     --hero-text-h3: var(--gray-4);
@@ -35,6 +39,8 @@ const variables = css`
 
     --about-background-colour: #FFF9A6;
     --about-text: var(--gray-10);
+    --about-text-h2: var(--gray-0);
+    --about-text-h3: var(--gray-4);
     --about-moreabout-link: var(--gray-10);
 
     --project-heading: var(--gray-0);
@@ -59,6 +65,21 @@ const variables = css`
     --archive-text-table-head: var(--gray-0);
     --archive-text-year: yellow;
     --archive-text-title: var(--gray-4);
+
+    --blog-text-h1: white;
+    --blog-tile-background-colour: #FFF9A6;
+    --blog-tile-text-title: var(--lightest-slate);
+    --blog-tile-text-description: var(--light-slate);
+    --blog-tile-text-date: var(--light-slate);
+
+    --post-text-titles: white;
+    --post-text: var(--gray-1);
+
+    --tags-text-titles: white;
+    --tags-text: var(--gray-4);
+    --tags-text-date: var(--gray-5);
+
+    --arrow-yellow: #FFF9A6;
 
     --scrollbar-track: var(--gray-7);
 

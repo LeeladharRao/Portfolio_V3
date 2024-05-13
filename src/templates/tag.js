@@ -8,6 +8,10 @@ import { Layout } from '@components';
 
 const StyledTagsContainer = styled.main`
   max-width: 1000px;
+  color: white;
+  .arrow {
+    color: var(--arrow-yellow);
+  }
 
   a {
     ${({ theme }) => theme.mixins.inlineLink};
@@ -16,6 +20,7 @@ const StyledTagsContainer = styled.main`
   h1 {
     ${({ theme }) => theme.mixins.flexBetween};
     margin-bottom: 50px;
+    color: var(--tags-text-titles);
 
     a {
       font-size: var(--fz-lg);
@@ -26,15 +31,16 @@ const StyledTagsContainer = styled.main`
   ul {
     li {
       font-size: 24px;
+      color: var(--arrow-yellow);
       h2 {
         font-size: inherit;
         margin: 0;
         a {
-          color: var(--light-slate);
+          color: var(--tags-text) ;
         }
       }
       .subtitle {
-        color: var(--slate);
+        color: var(--tags-text);
         font-size: var(--fz-sm);
 
         .tag {
@@ -56,7 +62,7 @@ const TagTemplate = ({ pageContext, data, location }) => {
       <StyledTagsContainer>
         <span className="breadcrumb">
           <span className="arrow">&larr;</span>
-          <Link to="/blog">All memories</Link>
+          <Link to="/blog">All Posts</Link>
         </span>
 
         <h1>

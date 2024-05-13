@@ -11,15 +11,10 @@ const StyledMainContainer = styled.main`
   & > header {
     margin-bottom: 100px;
     text-align: center;
+  }
 
-    a {
-      &:hover,
-      &:focus {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>⚡</text></svg>")
-            20 0,
-          auto;
-      }
-    }
+  h1 {
+    color: var(--blog-text-h1);
   }
 
   footer {
@@ -34,7 +29,8 @@ const StyledGrid = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 15px;
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 40px;
   position: relative;
 
   @media (max-width: 1080px) {
@@ -70,8 +66,7 @@ const StyledPost = styled.li`
     padding: 2rem 1.75rem;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    background-color: yellow;
-
+    background-color: var(--blog-tile-background-colour);
     header,
     a {
       width: 100%;
@@ -80,7 +75,6 @@ const StyledPost = styled.li`
 
   .post__icon {
     ${({ theme }) => theme.mixins.flexBetween};
-    color: var(--green);
     margin-bottom: 30px;
     margin-left: -5px;
 
@@ -92,7 +86,7 @@ const StyledPost = styled.li`
 
   .post__title {
     margin: 0 0 10px;
-    color: var(--lightest-slate);
+    color: var(--blog-tile-text-title);
     font-size: var(--fz-xxl);
 
     a {
@@ -112,15 +106,48 @@ const StyledPost = styled.li`
   }
 
   .post__desc {
-    color: var(--light-slate);
+    color: var(--blog-tile-text-description);
     font-size: 17px;
   }
 
   .post__date {
-    color: var(--light-slate);
+    color: var(--blog-tile-text-date);
     font-family: var(--font-mono);
     font-size: var(--fz-xxs);
     text-transform: uppercase;
+  }
+
+  .inline-link {
+    display: inline-block;
+    position: relative;
+    color: blue;
+    transition: var(--transition);
+
+    &:hover,
+    &:focus-visible {
+      color: blue;
+      outline: 0;
+      &:after {
+        width: 100%;
+      }
+      & > * {
+        color: blue !important;
+        transition: var(--transition);
+      }
+    }
+    &:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 1px;
+      position: relative;
+      bottom: 0.37em;
+      background-color: blue;
+      opacity: 0.5;
+      @media (prefers-reduced-motion: no-preference) {
+        transition: var(--transition);
+      }
+    }
   }
 
   ul.post__tags {
@@ -130,13 +157,12 @@ const StyledPost = styled.li`
     padding: 0;
     margin: 0;
     list-style: none;
-
+    
     li {
-      color: var(--green);
       font-family: var(--font-mono);
       font-size: var(--fz-xxs);
       line-height: 1.75;
-
+      
       &:not(:last-of-type) {
         margin-right: 15px;
       }
@@ -151,7 +177,8 @@ const PostGrid = ({ posts }) => {
       {posts.map(({ node }, i) => {
         const { frontmatter } = node;
         const { title, description, slug, date, tags } = frontmatter;
-        const formattedDate = new Date(date).toLocaleDateString();
+        const formattedDate = new Date(date).toLocaleDateString('en-US', {
+          month: 'short', day: 'numeric'}).replace(/ /g, ' ');
 
         return (
           <StyledPost key={i}>
@@ -199,7 +226,7 @@ const BlogPage = ({ location, data }) => {
           <h1 className="big-heading">Blog</h1>
           <p className="subtitle">
             <a>
-              a collection of memories
+              a collection of my writings
             </a>
           </p>
         </header>
@@ -218,7 +245,7 @@ const BlogPage = ({ location, data }) => {
               prevyear = groupyear;
               return (
                 <div>
-                  <h2>{groupyear}</h2>
+                  <h1>{groupyear}</h1>
                   <PostGrid posts={edges} />
                 </div>
               )
